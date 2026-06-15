@@ -1,0 +1,14 @@
+{
+  "name": "liderit-marketplace",
+  "owner": {
+    "name": "LiderIT",
+    "url": "https://liderit.es"
+  },
+  "plugins": [
+    {
+      "name": "bc365-code-intelligence",
+      "source": "./bc365-plugin",
+      "description": "Habilita el MCP BC Code Intelligence y activa su uso automáticamente en proyectos Business Central / AL."
+    }
+  ]
+}
