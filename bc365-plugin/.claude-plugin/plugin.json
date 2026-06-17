@@ -1,6 +1,6 @@
 {
   "name": "bc365-code-intelligence",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Habilita y prioriza el MCP BC Code Intelligence en proyectos de Business Central / AL, e instruye a Claude para usar sus herramientas y especialistas.",
   "author": {
     "name": "LiderIT",
