@@ -6,7 +6,7 @@
   },
   "plugins": [
     {
-      "name": "bc365-code-intelligence",
+      "name": "bc365-liderit",
       "source": "./bc365-plugin",
       "description": "Habilita el MCP BC Code Intelligence y activa su uso automáticamente en proyectos Business Central / AL."
     }

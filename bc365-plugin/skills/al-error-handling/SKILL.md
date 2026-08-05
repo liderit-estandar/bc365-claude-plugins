@@ -4,7 +4,7 @@ description: >-
   Usar al escribir o modificar codeunits AL de Business Central que manejen
   errores, validaciones o mensajes al usuario. Define reglas de TryFunction, uso
   de Labels (alineadas con la convención de textos de LiderIT), y telemetría.
-  Complementa al MCP bc-code-intel y a la skill bc365-code-intelligence.
+  Complementa al MCP bc-code-intel y a la skill bc365-normas.
 paths:
   - "**/*.Codeunit.al"
 ---
@@ -47,8 +47,8 @@ end;
 Todo texto de error/aviso/mensaje va en un `Label`, nunca como literal en línea en
 `Error`, `Message` o `Confirm`. Convención de textos de LiderIT: literal en
 **inglés** y traducción al **castellano** en el `Comment` con formato `ESP="..."`
-(ver skill `bc365-code-intelligence`). Identificadores técnicos no traducibles
-(telemetría, claves): `Locked = true`.
+(ver skill `bc365-normas`). Identificadores técnicos no traducibles (telemetría,
+claves): `Locked = true`.
 
 ```al
 // Correcto

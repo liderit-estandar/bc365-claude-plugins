@@ -5,7 +5,7 @@ description: >-
   las reglas de estilo (indentación, comentarios, modularidad) y de nombrado
   (objetos, ficheros, variables, interfaces, parámetros de eventos) que el código
   AL generado debe cumplir. Complementa al MCP bc-code-intel y a las normas de
-  empresa de la skill bc365-code-intelligence.
+  empresa de la skill bc365-normas.
 paths:
   - "**/*.al"
 ---
@@ -20,8 +20,8 @@ MIT), ajustadas a las convenciones de LiderIT.
 
 ### Nombres de objeto
 PascalCase y descriptivos. Máximo 30 caracteres en total; reservando espacio para
-el sufijo de LiderIT (ver skill `bc365-code-intelligence`), el nombre propio debe
-dejar margen. Sin abreviaturas crípticas.
+el sufijo de LiderIT (ver skill `bc365-normas`), el nombre propio debe dejar
+margen. Sin abreviaturas crípticas.
 
 ```al
 // Correcto

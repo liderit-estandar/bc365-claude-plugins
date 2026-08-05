@@ -2,8 +2,8 @@
   "mcpServers": {
     "bc-code-intel": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["bc-code-intelligence-mcp"]
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/bc-code-intel-launcher.cjs"]
     }
   }
 }
