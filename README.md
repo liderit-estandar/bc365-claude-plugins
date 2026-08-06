@@ -39,9 +39,12 @@ Requisitos: Node.js 18 o superior con `npm` en el PATH.
 En una sesión de Claude Code:
 
 ```
-/plugin marketplace add liderit-estandar/bc365-claude-plugins
+/plugin marketplace add https://github.com/liderit-estandar/bc365-claude-plugins.git
 /plugin install bc365-liderit@liderit-marketplace
 ```
+
+Se usa la URL HTTPS completa a propósito: el atajo `liderit-estandar/bc365-claude-plugins`
+clona por SSH por defecto y fallaría en máquinas sin clave SSH configurada.
 
 Reinicia la sesión y comprueba con `/mcp` que `bc-code-intel` aparece como
 conectado.
