@@ -4,6 +4,11 @@
       "type": "stdio",
       "command": "node",
       "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/bc-code-intel-launcher.cjs"]
+    },
+    "al": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/al-mcp-launcher.cjs"]
     }
   }
 }
