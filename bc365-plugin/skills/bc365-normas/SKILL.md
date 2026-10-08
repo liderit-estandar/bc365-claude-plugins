@@ -29,9 +29,8 @@ Central o de lenguaje AL. Indicadores típicos:
 
 ## MCP disponibles y cuándo usar cada uno
 
-Este plugin habilita `bc-code-intel`. El MCP `al` es opcional y cada dev lo
-configura por su cuenta (ver **Nota** al final): úsalo solo si sus herramientas
-están presentes en la sesión.
+Este plugin habilita `bc-code-intel` y `al` (ver **Nota** al final). Usa las
+herramientas de `al` solo si están presentes en la sesión.
 
 ### `bc-code-intel` — asesoramiento y conocimiento experto
 Para **cómo** hacer las cosas: diseño, patrones, buenas prácticas, debugging,
@@ -56,15 +55,25 @@ que se invoca por su nombre. Encamina la consulta al especialista adecuado:
 - **Configuración del propio MCP** → Chris.
 - **Usuario nuevo en IA o que quiere revisión previa** → Parker.
 
-### `al` (opcional) — verificación y acciones reales sobre el proyecto
+### `al` — verificación y acciones reales sobre el proyecto
 Para **comprobar** que lo hecho funciona y para operar sobre el proyecto real
-(AL MCP Server de Microsoft). Herramientas principales:
+(AL MCP Server de Microsoft). Expone 16 herramientas; las relevantes:
 
 - `al_compile` — validar que el código AL compila (rápido, sin generar .app).
 - `al_getdiagnostics` — obtener los diagnósticos de compilación (errores/avisos).
 - `al_symbolsearch` — buscar símbolos AL en el proyecto y sus dependencias.
+- `al_symbolrelations` — relaciones entre símbolos (quién usa qué).
 - `al_build` — construir el paquete .app.
+- `al_getnextobjectid` — obtener el siguiente Id libre antes de crear un objeto
+  (respeta los `idRanges`; no reserva el Id hasta guardar el fichero). **Ojo**: solo
+  mira la sintaxis del proyecto, no los Ids de dependencias instaladas ni de otras
+  extensiones publicadas en el mismo sandbox; lo avisa en su propia respuesta.
+- `al_searchtranslations` / `al_writetranslation` — consultar y escribir
+  traducciones. Útiles para la norma 3 (Caption en inglés + `ESP="..."`): antes de
+  inventar una traducción, mira cómo está traducido ese término en el proyecto.
 - `al_getpackagedependencies` — listar dependencias declaradas en app.json.
+- `al_run_tests` — ejecutar codeunits de test.
+- `al_inspectpage` — inspeccionar la definición de una página.
 - `al_downloadsymbols` / `al_publish` — descargar símbolos / publicar (requieren
   conexión y, en cloud, `al_auth_login` previo).
 
@@ -93,7 +102,8 @@ objetos nuevos, Claude debe leer los ficheros de configuración indicados.
 - Cada entrada define un rango con `from` y `to`. Asigna a cada objeto nuevo un
   Id **dentro** de alguno de esos rangos.
 - No reutilices Ids en uso: inspecciona los objetos existentes y elige el
-  siguiente Id libre. Puedes apoyarte en `al_symbolsearch` para comprobarlo.
+  siguiente Id libre. Si el MCP `al` está disponible, usa `al_getnextobjectid` o
+  `al_symbolsearch` para comprobarlo.
 - Si hay varios rangos, usa el primero con Ids disponibles salvo indicación
   distinta.
 - Si no hay `idRanges` o el rango está agotado, **detente y avisa** en vez de
@@ -139,8 +149,10 @@ Si las herramientas del MCP `bc-code-intel` no están disponibles en la sesión,
 indícalo al usuario: el servidor MCP debe estar habilitado (vía este plugin)
 antes de iniciar la sesión.
 
-El MCP `al` (AL Tool) no lo proporciona este plugin porque requiere .NET 8 y el
-binario `altool` de la extensión AL Language accesible en el PATH, algo que no
-está garantizado en las máquinas del equipo. Quien lo quiera puede añadirlo a su
-configuración propia con `claude mcp add al -- altool launchmcpserver
---transport stdio`.
+El MCP `al` (AL MCP Server de Microsoft) lo habilita este plugin mediante un
+lanzador que localiza ALTool y, si falta, lo instala solo. No necesita VS Code,
+pero sí el **SDK de .NET 10** en la máquina, que el plugin no puede instalar.
+
+Si las herramientas `al_*` no aparecen en la sesión, es que falta ese SDK o que la
+sesión se abrió antes de instalarlo. Díselo al usuario y remítele al README: no des
+por verificado código que no has podido compilar.
